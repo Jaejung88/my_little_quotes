@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title> {{display_user.first_name}}'s Quotes </title>
+</head>
+<body>
+    <div class="d-flex justify-content-between bg-info" style = "padding: 0 10px;">
+        <h1 class="text-center">{{ display_user.first_name}}'s Quotes</h1>
+        <div class="d-flex justify-content-between" style = "width: 150px;">
+            <a href="/dashboard" class="btn btn-secondary" style = "margin-top: 7.45px; height: 40px;">Back</a>
+            <a href="/logout" class="btn btn-danger align-items-center" style = "margin-top: 7.45px; height: 40px;">Logout</a>
+        </div>
+    </div>
+    <h1 class="text-center">{{ display_user.first_name }}'s Quotes</h1>
+    <div class="d-flex justify-content-around">
+        <div class="col-4 d-flex flex-column justify-content-around align-items-center">
+            {% for quote in display_user_quotes %}
+                <div class="card" style = "width: 250px;">
+                    <h4 class="card-title bg-primary p-2">{{ quote.author }}</h4>
+                    <p class="card-text p-1">: {{ quote.quote }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

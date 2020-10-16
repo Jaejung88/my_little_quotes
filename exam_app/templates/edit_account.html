@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Edit Account</title>
+</head>
+<body>
+    <div class="d-flex justify-content-between bg-danger" style = "padding: 0 10px;">
+        <h1 class="text-center">Edit Account</h1>
+        <div class="d-flex justify-content-between" style = "width: 150px;">
+            <a href="/dashboard" class="btn btn-secondary" style = "margin-top: 7.45px; height: 40px;">Back</a>
+            <a href="/logout" class="btn btn-danger align-items-center" style = "margin-top: 7.45px; height: 40px;">Logout</a>
+        </div>
+    </div>
+    <div class="d-flex justify-content-around">
+        <div class="col-4 my-5">
+            <form action="/edit_account_process/{{ edit_user.id }}" method="post">
+                <h2 class="text-center">Edit My Account</h2>
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for = "edit_first_name">First Name:</label>
+                    <input type="text" name="edit_first_name" value="{{ edit_user.first_name }}" class="form-control">
+                    <span class="text-danger">
+                        {% for message in messages %}
+                            {% if message.tags == 'edit_first_name error' %}
+                                {{ message }}
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="edit_last_name">Last Name:</label>
+                    <input type="text" name="edit_last_name" value="{{ edit_user.last_name }}" class="form-control">
+                    <span class="text-danger">
+                        {% for message in messages %}
+                            {% if message.tags == 'edit_last_name error' %}
+                                {{ message }}
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label for="edit_email">Email:</label>
+                    <input type="text" name="edit_email" value="{{ edit_user.email }}" class="form-control">
+                    <span class="text-danger">
+                        {% for message in messages %}
+                            {% if message.tags == 'edit_email error' %}
+                                {{ message }}
+                            {% endif %}
+                        {% endfor %}
+                    </span>
+                </div>
+                <input type="submit" value="Update" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
